@@ -6,8 +6,8 @@ import Plotting
 
 
 class creds:
-    APIKEY = 'RGAPI-9ece776f-d779-4af8-82f8-7d6a30cdd8e4'    # Riots API key. Get it at https://developer.riotgames.com/
-    username = 'scrubler'       # Your league username (CASE SENSITIVE)
+    APIKEY = ''    # Riots API key. Get it at https://developer.riotgames.com/
+    username = ''       # Your league username (CASE SENSITIVE)
     sololane = True       # Are you a sololaner or botlane?
 
 def main():
