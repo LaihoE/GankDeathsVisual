@@ -35,36 +35,38 @@ def summonertoparticipant(playername,sololane):
         # Match the player name to the participantId the player was in the game
 
         for pl in range(1, 10):
-            if x['participantIdentities'][pl]['player']['summonerName'] == playername:
-                playerid = x['participantIdentities'][pl]['participantId']
-                # WARDTIMER
-                for m in range(100):
-                    for i in range(100):
-                        try:
-                            if y['frames'][m]['events'][i]['type'] == 'WARD_PLACED':
-                                if y['frames'][m]['events'][i]['creatorId'] == playerid:
-                                    timestamp = y['frames'][m]['events'][i]['timestamp']
-                                    wardtimes.append(timestamp)
-                        except:
-                            pass
-                print(wardtimes)
-                # KILLTIMER
-                for m in range(100):
-                    for i in range(100):
-
-                        try:
-                            if y['frames'][m]['events'][i]['type'] == 'CHAMPION_KILL':
-                                print("1",y['frames'][m]['events'][i]['victimId'])
-                                if y['frames'][m]['events'][i]['victimId'] == playerid:
-                                    print("2",y['frames'][m]['events'][i]['assistingParticipantIds'])
-                                    print('beforN_ass')
-                                    if len(y['frames'][m]['events'][i]['assistingParticipantIds']) == n_assists:
+            try:
+                if x['participantIdentities'][pl]['player']['summonerName'] == playername:
+                    playerid = x['participantIdentities'][pl]['participantId']
+                    # WARDTIMER
+                    for m in range(100):
+                        for i in range(100):
+                            try:
+                                if y['frames'][m]['events'][i]['type'] == 'WARD_PLACED':
+                                    if y['frames'][m]['events'][i]['creatorId'] == playerid:
                                         timestamp = y['frames'][m]['events'][i]['timestamp']
-                                        killtimes.append(timestamp)
-                                        print("Final")
-                        except:
-                            pass
+                                        wardtimes.append(timestamp)
+                            except:
+                                pass
+                    print(wardtimes)
+                    # KILLTIMER
+                    for m in range(100):
+                        for i in range(100):
 
+                            try:
+                                if y['frames'][m]['events'][i]['type'] == 'CHAMPION_KILL':
+                                    print("1",y['frames'][m]['events'][i]['victimId'])
+                                    if y['frames'][m]['events'][i]['victimId'] == playerid:
+                                        print("2",y['frames'][m]['events'][i]['assistingParticipantIds'])
+                                        print('beforN_ass')
+                                        if len(y['frames'][m]['events'][i]['assistingParticipantIds']) == n_assists:
+                                            timestamp = y['frames'][m]['events'][i]['timestamp']
+                                            killtimes.append(timestamp)
+                                            print("Final")
+                            except:
+                                pass
+            except:
+                pass
 
         for x in killtimes:
             y = x / 1000 / 60
